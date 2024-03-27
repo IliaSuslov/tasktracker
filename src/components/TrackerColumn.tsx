@@ -9,7 +9,7 @@ export const TrackerColumn = ({ tasks, status, isDragging, handleDragging, handl
     const dispatch = useDispatch()
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        handleUpdateList(e.dataTransfer.getData('status'), status)
+        handleUpdateList(Number(e.dataTransfer.getData('status')), status)
         handleDragging(false)
     }
 
@@ -39,7 +39,6 @@ export const TrackerColumn = ({ tasks, status, isDragging, handleDragging, handl
                         </div>
                     }
                 </div>
-
             </div>
 
             <div className='tracker-tasks'>

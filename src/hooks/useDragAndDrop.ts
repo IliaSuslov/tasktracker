@@ -8,7 +8,7 @@ export const useDragAndDrop = () => {
     const dispatch = useDispatch()
 
     const handleUpdateList = (id: number, status: Status) => {
-        dispatch(changeTaskStatus({ taskId: Number(id), status }))
+        dispatch(changeTaskStatus({ taskId: id, status }))
     }
 
     const handleDragging = (dragging: boolean) => setIsDragging(dragging)

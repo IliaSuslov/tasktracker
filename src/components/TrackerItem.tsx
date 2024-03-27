@@ -15,9 +15,9 @@ export const TrackerItem = ({ task, handleDragging }: { task: Task, handleDraggi
     const handleDragEnd = () => handleDragging(false)
 
 
-    const handleChangeTaskTitle = (taskId) => {
+    const handleChangeTaskTitle = () => {
         if (title.length) {
-            dispatch(changeTaskTitle({ taskId, title }))
+            dispatch(changeTaskTitle({ taskId: task.id, title }))
         }
         setEditable(false)
     }
@@ -31,7 +31,7 @@ export const TrackerItem = ({ task, handleDragging }: { task: Task, handleDraggi
             {editable ? <input onChange={e => setTitle(e.target.value)} /> : <p>{task.title}</p>}
             {!editable
                 ? <button className="btn btn-blue" onClick={() => setEditable(!editable)}>Edit</button>
-                : <button className="btn btn-green" onClick={() => handleChangeTaskTitle(task.id)}>Save</button>
+                : <button className="btn btn-green" onClick={handleChangeTaskTitle}>Save</button>
             }
         </div>
     )
