@@ -7,14 +7,14 @@ const statuses = ['planned', 'in progress', 'done']
 
 export const Tracker = () => {
     const tasks = useSelector((state: RootState) => state.tasksTracker.tasks)
-    const { isDragging, listItems, handleDragging, handleUpdateList } = useDragAndDrop(tasks)
+    const { isDragging, handleDragging, handleUpdateList } = useDragAndDrop()
 
     return (
         <div className='tracker'>
             {statuses.map(status => {
                 return <TrackerColumn
                     status={status}
-                    tasks={listItems}
+                    tasks={tasks}
                     key={status}
                     isDragging={isDragging}
                     handleDragging={handleDragging}

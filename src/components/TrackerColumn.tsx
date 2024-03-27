@@ -21,7 +21,7 @@ export const TrackerColumn = ({ tasks, status, isDragging, handleDragging, handl
         if (title.length) {
             dispatch(addTask({ title, status }))
         }
-        setAdd(!add)
+        setAdd(false)
     }
     return (
         <div
@@ -32,7 +32,7 @@ export const TrackerColumn = ({ tasks, status, isDragging, handleDragging, handl
             <div className='tracker-header'>
                 <div className='tracker-header-title'>
                     <h2>{status}</h2>
-                    {!add ? <button className='tracker-header-button' onClick={() => setAdd(!add)}>Add</button>
+                    {!add ? <button className='btn btn-green' onClick={() => setAdd(!add)}>Add</button>
                         : <div className='tracker-header-input'>
                             <input onChange={e => setTitle(e.target.value)} />
                             <button className='tracker-header-button' onClick={handleAddTask}>Add</button>

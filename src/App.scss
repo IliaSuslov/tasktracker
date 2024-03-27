@@ -31,19 +31,6 @@
   justify-content: center;
   gap: 1rem;
 }
-.tracker-header-button {
-  background-color: green;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-  &:hover {
-    background-color: lightgreen;
-  }
-}
-
 .tracker-col {
   width: 33%;
   border: 2px solid green;
@@ -61,10 +48,41 @@
 .tracker-tasks-item {
   padding: 1rem;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   &:hover {
     width: 80%;
     background-color: lightgreen;
     color: black;
     border-radius: 8px;
   }
+}
+
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@mixin button-bg($bg) {
+  background: $bg;
+  &:hover {
+    background: darken($bg, 8%);
+    transition: all 0.3s ease;
+  }
+}
+
+.btn-green {
+  @include button-bg(green);
+}
+
+.btn-blue {
+  @include button-bg(blue);
 }

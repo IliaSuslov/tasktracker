@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { Tracker } from './components/Tracker';
 
 function App() {

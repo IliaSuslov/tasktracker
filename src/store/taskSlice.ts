@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 import { TasksTrackerState } from '../interfaces'
 
 const initialState: TasksTrackerState = {
@@ -19,12 +18,18 @@ export const tasksTrackerSlice = createSlice({
     reducers: {
         addTask: (state, { payload }) => {
             state.tasks.push({ id: state.tasks.length + 1, ...payload })
-            console.log(state.tasks)
-            // return state.tasks
+        },
+        changeTaskTitle: (state, { payload }) => {
+            const { taskId, title } = payload
+            state.tasks.find(task => task.id === taskId).title = title
+        },
+        changeTaskStatus: (state, { payload }) => {
+            const { taskId, status } = payload
+            state.tasks.find(task => task.id === taskId).status = status
         },
     },
 })
 
-export const { addTask } = tasksTrackerSlice.actions
+export const { addTask, changeTaskTitle, changeTaskStatus } = tasksTrackerSlice.actions
 
 export default tasksTrackerSlice.reducer

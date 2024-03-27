@@ -1,31 +1,20 @@
-import { useEffect, useState } from "react"
-import { Status, Task } from "../interfaces"
+import { useState } from "react"
+import { Status } from "../interfaces"
+import { useDispatch } from "react-redux"
+import { changeTaskStatus } from "../store/taskSlice"
 
-export const useDragAndDrop = (initialState: Task[]) => {
+export const useDragAndDrop = () => {
     const [isDragging, setIsDragging] = useState(false)
-    const [listItems, setListItems] = useState<Task[]>([])
-
-    useEffect(() => {
-        setListItems(initialState)
-    }, [initialState])
+    const dispatch = useDispatch()
 
     const handleUpdateList = (id: number, status: Status) => {
-        let card = listItems.find(item => Number(item.id) === Number(id))
-        if (card && card.status !== status) {
-            const newCard = { ...card }
-            newCard.status = status
-            setListItems(prev => ([
-                newCard,
-                ...prev.filter(item => Number(item.id) !== Number(id))
-            ]))
-        }
+        dispatch(changeTaskStatus({ taskId: Number(id), status }))
     }
 
     const handleDragging = (dragging: boolean) => setIsDragging(dragging)
 
     return {
         isDragging,
-        listItems,
         handleUpdateList,
         handleDragging,
     }
